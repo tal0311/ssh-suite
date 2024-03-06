@@ -3,16 +3,27 @@ import state
 from  services_py.ssh_service import SSHConnection
 import json 
 import time
+from services_py.http_service import HTTPService
+import services_py.svg_service as svg_service
 
 ssh_connection = None
 
 eel.init('web')
 app_state = state.AppState()
+user_http = HTTPService('/api/user')
 size = app_state.get_state('size')
+
+@eel.expose
+def toggle_terminal():
+    print('toggle_terminal')
 
 @eel.expose
 def initial_commands():
     pass
+
+@eel.expose
+def get_icon(icon_name):
+    return svg_service.get_svg(icon_name)
 
 @eel.expose
 def get_folder_details(folder_name):
@@ -36,11 +47,18 @@ def get_back():
     global ssh_connection
     ssh_connection.execute_command('cd' ,'-')
     output= ssh_connection.execute_command('ls -lh', '.')
-    
     eel.js_render_folder_details(output)
-    
-    
 
+@eel.expose
+def send_mail():
+    print('send_mail')
+    # send mail with shell command
+    
+@eel.expose
+def upload_file():
+    print('upload_file')
+    # upload file with shell command
+    
 @eel.expose
 def init_app():
    
@@ -51,7 +69,7 @@ def init_app():
         ssh_connection.connect()
        
         ssh_connection.execute_command('whoami')
-        print('---------------------')
+        print('Initial commands\n')
         output= ssh_connection.execute_command('ls -lh')
         eel.js_render_folder_details(output)
        

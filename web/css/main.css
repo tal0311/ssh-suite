@@ -1,7 +1,18 @@
 /* variables */
+@import './base/vars.css';
+
 /* base */
 @import './base.css';
 /* helpers */
 
 /* cmps */
 @import './cmps/app-container.css';
+@import './cmps/file-list.css';
+@import './cmps/dashboard.css';
+@import './cmps/app-header.css';
+@import './cmps/history.css';
+@import './cmps/folder-details.css';
+@import './cmps/upload-file.css';
+@import './cmps/terminal.css';
+@import './cmps/send-mail.css';
+@import './cmps/user-preview.css';

@@ -1,0 +1,60 @@
+.file-list-container{
+  display: grid;
+  grid-template-rows: 40px 40px 1fr;
+  gap: 1rem;
+  padding-inline-start: 1rem;
+  /* border-left: solid 5px var(--clr2);
+  border-right: solid 5px var(--clr2); */
+}
+
+.file-list-container .back-btn {
+  border: 1px solid;
+  background: none;
+  border-radius: 4px;
+  background-color: var(--clr1);
+  color: var(--clr2);
+  justify-self: start;
+  width: 50%;
+  
+}
+
+.file-list-container .back-btn:disabled{
+  cursor:not-allowed;
+  background-color: var(--clr4);
+}
+
+.file-list {
+  list-style: none;
+  
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+  overflow: auto;
+
+
+  align-items: start;
+}
+
+.file-list-container .breadcrumbs{
+  align-self: center;
+}
+
+.file-list::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.file-list::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+.file-list::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .file-list {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}

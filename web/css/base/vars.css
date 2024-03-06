@@ -1,0 +1,13 @@
+:root{
+
+    --clr1: #218996;
+    --clr2:#ffffff;
+    --clr3:#edf3f9;
+    --clr4:#8888;
+
+    --sb-track-color: var(--clr2);
+    --sb-thumb-color: var(--clr4);
+
+    --sb-size: 10px;
+
+}

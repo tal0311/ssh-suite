@@ -3,3 +3,35 @@ body{
     margin: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.container-base{
+    padding: 1rem;
+    background-color: var(--clr3);
+}
+
+.inner-container{
+    background-color: var(--clr2);
+    border-radius: 7px;
+    padding: 0.5rem;
+}
+
+.icon{
+    all: unset;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+svg{
+    transition: 0.3s ease-in-out;
+}
+
+.icon svg:hover{
+
+fill: var(--clr1);
+}
+
+h1,h2,h3,h4,h5,h6{
+    padding: 0;
+    margin: 0;
+}

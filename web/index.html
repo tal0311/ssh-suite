@@ -17,31 +17,72 @@
   <body class="container" onload="init()">
     <!--=oncontextmenu="return false" onselectstart="return false" ondragstart="return false">-->
 
-    <section class="header-container">
-      <div class="search-container">
+    <section class="header-container container-base">
+      <div class="search-container inner-container">
         <input type="search" name="" id="" placeholder="Search anything" />
       </div>
-      <span class="user-preview"></span>
+      <article class="user-preview">
+        <h4>tal0311</h4>
+      </article>
     </section>
     <section class="logo">
       <h1>logo</h1>
     </section>
     <section class="file-list-container">
       <button onclick="onBack()" class="back-btn" disabled="true">back</button>
-      <span class="breadcrumbs"></span>
-      <ul class="file-list"></ul>
+      <span class="breadcrumbs">/home/tal0311</span>
+      <ul class="file-list inner-container"></ul>
     </section>
-    <section class="dashboard">
-      <h4 class="total-size"></h4>
+
+    <section class="dashboard container-base">
+      <h4>More actions</h4>
+      <h4 class="total-size inner-container"></h4>
     </section>
-    <section class="folder-details">
-      <h4>Folder details</h4>
-      <div class="file-content"></div>
+
+    <section class="folder-details container-base">
+      <h4>File details</h4>
+      <div class="file-content inner-container">
+        <code>
+          <pre>Files you select will show content here</pre>
+        </code>
+      </div>
     </section>
-    <section class="upload-file"></section>
-    <section class="history"></section>
-    <section class="terminal"></section>
-    <section class="send-mail"></section>
+
+    <section class="upload-file container-base">
+      <button onclick="onUploadFile()" class="icon upload-icon"></button>
+    </section>
+    <section class="history container-base">
+      <h4>History</h4>
+      <ul class="history-list inner-container">
+       <li>item 1</li>
+       <li>item 2</li>
+       <li>item 3</li>
+       <li>item 4</li>
+       <li>item 5</li>
+       <li>item 6</li>
+       <li>item 7</li>
+       <li>item 8</li>
+       <li>item 9</li>
+       <li>item 10</li>
+       <li>item 1</li>
+       <li>item 2</li>
+       <li>item 3</li>
+       <li>item 4</li>
+       <li>item 5</li>
+       <li>item 6</li>
+       <li>item 7</li>
+       <li>item 8</li>
+       <li>item 9</li>
+       <li>item 10</li>
+
+      </ul>
+    </section>
+    <section class="terminal">
+      <button onclick="onToggleTerminal()" class="icon terminal-icon"></button>
+    </section>
+    <section class="send-mail container-base">
+      <button onclick="onSendMail()" class="icon mail-icon"></button>
+    </section>
 
     <dialog>
       <h1>Modal</h1>
@@ -61,7 +102,16 @@
       async function init() {
         await eel.init_app()();
         // renderFileList(files);
-        js_inner_html(".user-preview", user[0]);
+        js_inner_html(".user-preview h4", user[0]);
+        renderIcon('.terminal-icon', 'terminal');
+        renderIcon('.upload-icon', 'upload');
+        renderIcon('.mail-icon', 'mail');
+      }
+
+       async function renderIcon(selector, icon_name) {
+        icon =await eel.get_icon(icon_name)();
+        js_inner_html(selector, icon);
+        
       }
 
       function renderFileList(files) {
@@ -129,7 +179,20 @@
         eel.get_back()();
       }
 
-     
+      function onToggleTerminal() {
+        eel.toggle_terminal()();
+      }
+
+      function onUploadFile() {
+        // open file upload modal from service
+        eel.upload_file()();
+      }
+
+      
+      function onSendMail() {
+        // open mail modal from service
+        eel.send_mail()();
+      }
 
     </script>
   </body>

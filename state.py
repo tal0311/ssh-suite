@@ -8,14 +8,14 @@ class AppState:
             "whoami": "tal0311",
             "logged_user": {"username": "tal", "password": "123456"},
             "ssh_connection": {
-                "hostname": "192.168.93.98",
+                "hostname": "192.168.1.160",
                 "port": 22,
                 "username": "tal0311",
                 "password": "123456"
                            },
             "size":{
-                "width": 500,
-                "height": 500
+                "width": 1124,
+                "height": 800
                  }
             }
 

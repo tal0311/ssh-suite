@@ -1,0 +1,9 @@
+.folder-details{
+    display: grid;
+    align-items: start;
+    grid-template-rows: 40px 1fr;
+}
+
+.file-content{
+    overflow: auto;
+}

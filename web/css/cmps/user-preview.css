@@ -1,0 +1,22 @@
+.user-preview{
+    display: grid;
+    align-items: center;
+    justify-content: end;
+}
+
+
+.user-preview h4{
+    background-color: #fff;
+    padding: 0.8rem;
+    border-radius: 50vh;
+    position: relative;
+}
+
+.user-preview h4::after{
+    content: '🟢';
+    position: absolute;
+    top: -0.2em;
+    right: -0.1em;
+   font-size: 10px;
+    border-radius: 50%;
+}
