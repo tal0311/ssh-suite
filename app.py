@@ -54,10 +54,15 @@ def send_mail():
     print('send_mail')
     # send mail with shell command
     
+    
 @eel.expose
 def upload_file():
     print('upload_file')
-    # upload file with shell command
+    # upload file with scp command
+    # To upload a file using scp command, you can use the following command:
+    # scp /path/to/local/file username@hostname:/path/to/remote/directory
+    # Please replace the paths, username, and hostname with your actual data.
+    
     
 @eel.expose
 def init_app():
