@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Template</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+    <link
+      rel="shortcut icon"
+      href="/web/assets/images/favicon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body class="container" onload="init()">
+    <!--=oncontextmenu="return false" onselectstart="return false" ondragstart="return false">-->
+
+    <section class="header-container">
+      <div class="search-container">
+        <input type="search" name="" id="" placeholder="Search anything" />
+      </div>
+      <span class="user-preview"></span>
+    </section>
+    <section class="logo">
+      <h1>logo</h1>
+    </section>
+    <section class="file-list-container">
+      <span class="breadcrumbs"></span>
+      <ul class="file-list"></ul>
+    </section>
+    <section class="dashboard">
+      <h4 class="total-size"></h4>
+    </section>
+    <section class="folder-details">
+      <h4>Folder details</h4>
+      <div class="file-content"></div>
+    </section>
+    <section class="upload-file"></section>
+    <section class="history"></section>
+    <section class="terminal"></section>
+    <section class="send-mail"></section>
+
+    <dialog>
+      <h1>Modal</h1>
+      <button>click</button>
+    </dialog>
+
+    <script type="text/javascript" src="/eel.js"></script>
+
+    <script>
+      files = [
+        "total 48K",
+        "-rwxrwxr-x 1 tal0311 tal0311  204 Feb 14 15:42 bs_1.sh",
+        "drwxrwxr-x 2 tal0311 tal0311 4.0K Feb 14 15:42 ex1",
+        "-rw-rw-r-- 1 tal0311 tal0311  10K Feb 17 14:11 file-ps.txt",
+        "-rwxrwxr-x 1 tal0311 tal0311  577 Feb 15 11:54 func.sh",
+        "-rwxrwxr-x 1 tal0311 tal0311  128 Feb 15 11:41 log_user.sh",
+        "-rw-rw-r-- 1 tal0311 tal0311   49 Feb 16 14:41 proc.txt",
+        "-rwxrwxr-x 1 tal0311 tal0311   32 Feb 17 00:14 script.sh",
+        "-rwxrwxr-x 1 tal0311 tal0311  279 Feb 17 22:22 welcome.sh",
+        "-rw-rw-r-- 1 tal0311 tal0311   23 Feb 17 00:11 win_file.txt",
+        "-rw-rwx--- 1 test98  tal0311 3.1K Feb 17 21:23 wordlist2.txt",
+      ];
+      whoami = ["/home/tal0311"];
+      system = [
+        "Linux ubuntoserver 5.15.0-94-generic #104-Ubuntu SMP Tue Jan 9 15:25:40 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux",
+      ];
+      user = ["tal0311"];
+
+      async function init() {
+        await eel.init_app()();
+        // renderFileList(files);
+        js_inner_html(".user-preview", user[0]);
+      }
+
+      function renderFileList(files) {
+        strHtml = files
+          .map((file, idx) => {
+            item = file.split(" ");
+            if (idx !== 0) {
+              return `<li class="file-item" onclick="onItemClick('${
+                item[0]
+              }', '${item.at(-1)}')">${item.at(-1)}</li>`;
+            }
+          })
+          .join("");
+
+        js_inner_html(".file-list", strHtml);
+        js_inner_html(".total-size", files[0]);
+      }
+
+      eel.expose(js_inner_html);
+      function js_inner_html(selector, html) {
+        document.querySelector(selector).innerHTML = html;
+      }
+
+      eel.expose(showModal);
+      function showModal() {
+        document.querySelector("dialog").showModal();
+      }
+
+      eel.expose(closeModal);
+      function closeModal() {
+        document.querySelector("dialog").close();
+      }
+
+      eel.expose(js_alert);
+      function js_alert(message) {
+        alert(message);
+      }
+
+      async function onItemClick(permissions, itemName) {
+        console.log("item clicked", itemName);
+        permissions.includes("d")
+          ? await eel.get_folder_details(itemName)()
+          : await eel.get_file_details(itemName)();
+      }
+
+      eel.expose(js_render_folder_details);
+      function js_render_folder_details(folderDetails) {
+        console.log("folderDetails", folderDetails);
+        renderFileList(folderDetails);
+        // renderBreadcrumbs(dir)
+      }
+
+      function renderBreadcrumbs() {
+        eel.get_breadcrumbs(dir)
+        js_inner_html(".breadcrumbs", "Home");
+      }
+      eel.expose(js_render_file_details);
+      function js_render_file_details(fileDetails) {
+        console.log("fileDetails", fileDetails);
+        html = `<code><pre>${fileDetails}</pre></code>`;
+        js_inner_html(".file-content", html);
+      }
+
+      eel.expose(js_prepData);
+      function js_prepData(data) {
+    
+      //  console.log("prepData entries", Object.entries( data));
+      //  console.log("prepData entries", Object.entries( data.split("\n\r")));
+      //  console.log("prepData values ", Object.values( data.split("\n\r")));
+      //  console.log("prepData keys", Object.keys( data.split("\r")));
+      //  console.log("prepData jso", JSON.parse(JSON.stringify( data.split("\r"))));
+      }
+
+    </script>
+  </body>
+</html>

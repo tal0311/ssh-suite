@@ -1,0 +1,57 @@
+.container {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr 1fr 1fr;
+  grid-template-rows: 80px 1.3fr 1.3fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "logo header-container header-container header-container"
+    "file-list-container folder-details folder-details dashboard"
+    "file-list-container folder-details folder-details upload-file"
+    "terminal history history send-mail";
+}
+
+.header-container {
+  grid-area: header-container;
+  background-color: cadetblue;
+}
+
+.logo {
+  grid-area: logo;
+  background-color: lightcoral;
+}
+
+.file-list-container {
+  grid-area: file-list-container;
+  background-color: lightgreen;
+}
+
+.dashboard {
+  grid-area: dashboard;
+  background-color: lightpink;
+}
+
+.folder-details {
+  grid-area: folder-details;
+  background-color: lightskyblue;
+}
+
+.upload-file {
+  grid-area: upload-file;
+  background-color: rgb(0, 187, 44);
+}
+
+.history {
+  grid-area: history;
+  background-color: rgb(186, 130, 255);
+}
+
+.terminal {
+  grid-area: terminal;
+  background-color: rgb(255, 165, 116);
+}
+
+.send-mail {
+  grid-area: send-mail;
+  background-color: rgb(193, 218, 233);
+}
