@@ -19,8 +19,9 @@ def get_folder_details(folder_name):
    global ssh_connection
    ssh_connection.execute_command('cd' ,folder_name)
    output= ssh_connection.execute_command('ls -lh' ,folder_name)
-   print(output)
-   eel.js_render_folder_details(output)
+   curr_dir= ssh_connection.current_directory
+   print(output, curr_dir)
+   eel.js_render_folder_details(output, curr_dir)
     
 @eel.expose
 def get_file_details(file_name):
@@ -29,6 +30,14 @@ def get_file_details(file_name):
     output= ssh_connection.execute_command('cat' ,file_name)
     print('cat :', output)
     eel.js_render_file_details(output)
+    
+@eel.expose
+def get_back():
+    global ssh_connection
+    ssh_connection.execute_command('cd' ,'-')
+    output= ssh_connection.execute_command('ls -lh', '.')
+    
+    eel.js_render_folder_details(output)
     
     
 

@@ -27,6 +27,7 @@
       <h1>logo</h1>
     </section>
     <section class="file-list-container">
+      <button onclick="onBack()" class="back-btn" disabled="true">back</button>
       <span class="breadcrumbs"></span>
       <ul class="file-list"></ul>
     </section>
@@ -50,20 +51,8 @@
     <script type="text/javascript" src="/eel.js"></script>
 
     <script>
-      files = [
-        "total 48K",
-        "-rwxrwxr-x 1 tal0311 tal0311  204 Feb 14 15:42 bs_1.sh",
-        "drwxrwxr-x 2 tal0311 tal0311 4.0K Feb 14 15:42 ex1",
-        "-rw-rw-r-- 1 tal0311 tal0311  10K Feb 17 14:11 file-ps.txt",
-        "-rwxrwxr-x 1 tal0311 tal0311  577 Feb 15 11:54 func.sh",
-        "-rwxrwxr-x 1 tal0311 tal0311  128 Feb 15 11:41 log_user.sh",
-        "-rw-rw-r-- 1 tal0311 tal0311   49 Feb 16 14:41 proc.txt",
-        "-rwxrwxr-x 1 tal0311 tal0311   32 Feb 17 00:14 script.sh",
-        "-rwxrwxr-x 1 tal0311 tal0311  279 Feb 17 22:22 welcome.sh",
-        "-rw-rw-r-- 1 tal0311 tal0311   23 Feb 17 00:11 win_file.txt",
-        "-rw-rwx--- 1 test98  tal0311 3.1K Feb 17 21:23 wordlist2.txt",
-      ];
-      whoami = ["/home/tal0311"];
+     
+    
       system = [
         "Linux ubuntoserver 5.15.0-94-generic #104-Ubuntu SMP Tue Jan 9 15:25:40 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux",
       ];
@@ -119,9 +108,9 @@
       }
 
       eel.expose(js_render_folder_details);
-      function js_render_folder_details(folderDetails) {
-        console.log("folderDetails", folderDetails);
-        renderFileList(folderDetails);
+      function js_render_folder_details(folderDetails ,curr_dir='/home/tal0311/') {
+        document.querySelector(".back-btn").disabled = curr_dir === '/home/tal0311/'? true : false;
+         renderFileList(folderDetails);
         // renderBreadcrumbs(dir)
       }
 
@@ -131,20 +120,16 @@
       }
       eel.expose(js_render_file_details);
       function js_render_file_details(fileDetails) {
-        console.log("fileDetails", fileDetails);
-        html = `<code><pre>${fileDetails}</pre></code>`;
+        
+        html = `<code><pre>${fileDetails}</pre></code>`
         js_inner_html(".file-content", html);
       }
 
-      eel.expose(js_prepData);
-      function js_prepData(data) {
-    
-      //  console.log("prepData entries", Object.entries( data));
-      //  console.log("prepData entries", Object.entries( data.split("\n\r")));
-      //  console.log("prepData values ", Object.values( data.split("\n\r")));
-      //  console.log("prepData keys", Object.keys( data.split("\r")));
-      //  console.log("prepData jso", JSON.parse(JSON.stringify( data.split("\r"))));
+      function onBack() {
+        eel.get_back()();
       }
+
+     
 
     </script>
   </body>
