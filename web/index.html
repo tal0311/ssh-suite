@@ -23,6 +23,7 @@
       </div>
       <article class="user-preview">
         <h4>tal0311</h4>
+        <span class="connection-indicator"></span>
       </article>
     </section>
     <section class="logo">
@@ -60,21 +61,6 @@
        <li>item 4</li>
        <li>item 5</li>
        <li>item 6</li>
-       <li>item 7</li>
-       <li>item 8</li>
-       <li>item 9</li>
-       <li>item 10</li>
-       <li>item 1</li>
-       <li>item 2</li>
-       <li>item 3</li>
-       <li>item 4</li>
-       <li>item 5</li>
-       <li>item 6</li>
-       <li>item 7</li>
-       <li>item 8</li>
-       <li>item 9</li>
-       <li>item 10</li>
-
       </ul>
     </section>
     <section class="terminal">
@@ -97,12 +83,16 @@
       system = [
         "Linux ubuntoserver 5.15.0-94-generic #104-Ubuntu SMP Tue Jan 9 15:25:40 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux",
       ];
-      user = ["tal0311"];
+      // user = ["tal0311"];
 
       async function init() {
-        await eel.init_app()();
+        logged_user= await eel.init_app()();
+        console.log(logged_user);
         // renderFileList(files);
-        js_inner_html(".user-preview h4", user[0]);
+        if (logged_user[0]) {
+          document.querySelector(".connection-indicator").classList.add("online");
+        }
+        js_inner_html(".user-preview h4", logged_user[0]);
         renderIcon('.terminal-icon', 'terminal');
         renderIcon('.upload-icon', 'upload');
         renderIcon('.mail-icon', 'mail');

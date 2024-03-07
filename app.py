@@ -5,18 +5,26 @@ import json
 import time
 from services_py.http_service import HTTPService
 import services_py.svg_service as svg_service
+import services_py.error_service as error_service
+import subprocess
 
 ssh_connection = None
 
 eel.init('web')
 app_state = state.AppState()
 user_http = HTTPService('/api/user')
+error_service= error_service.ErrorService()
 size = app_state.get_state('size')
 
 @eel.expose
 def toggle_terminal():
-    print('toggle_terminal')
-
+    try:
+        print('Opening terminal')
+        subprocess.run(['start', 'powershell'], shell=True)
+      
+    except Exception as e:
+        print('Error:', e)
+        error_service.log_error('Error | '+ str(e) + ' | At: toggle_terminal')
 @eel.expose
 def initial_commands():
     pass
@@ -73,15 +81,17 @@ def init_app():
         ssh_connection = SSHConnection(connection_info['hostname'], connection_info['port'], connection_info['username'], connection_info['password'])
         ssh_connection.connect()
        
-        ssh_connection.execute_command('whoami')
-        print('Initial commands\n')
+        logged_user= ssh_connection.execute_command('whoami')
+        print('Initial commands\n', logged_user)
         output= ssh_connection.execute_command('ls -lh')
         eel.js_render_folder_details(output)
+        return logged_user
        
               
     except Exception as e:
-        print("An error occurred:", e)
-        return {'status': 'error', 'message': str(e)}
+        print('Error:', e)
+        error_service.log_error('Error | '+ str(e) + ' | at init_app')
+      
     
 @eel.expose
 def get_breadcrumbs(dir):
