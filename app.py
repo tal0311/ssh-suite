@@ -10,6 +10,9 @@ import services_py.notification_service as notification_service
 import services_py.modal_service as modal_service
 import subprocess
 
+# TODO: Add breadcrumbs to the app
+# TODO: Add a notification
+# TODO: connect to BE
 ssh_connection = None
 
 eel.init('web')
@@ -27,13 +30,13 @@ def log(message):
 @eel.expose
 def toggle_terminal():
     try:
-        print('Opening terminal')
+        
         subprocess.run(['start', 'powershell'], shell=True)
         log('Terminal Opened')
         
       
     except Exception as e:
-        print('Error:', e)
+        
         error_service.log_error('Error | '+ str(e) + ' | At: toggle_terminal')
 @eel.expose
 def initial_commands():
@@ -53,7 +56,7 @@ def get_folder_details(folder_name):
         log('Folder details for: '+ folder_name)
         eel.js_render_folder_details(output, curr_dir)
     except Exception as e:
-        print('Error:', e)
+        
         error_service.log_error('Error | '+ str(e) + ' | At: get_folder_details') 
         
 @eel.expose
@@ -64,7 +67,7 @@ def get_file_details(file_name):
         log('File details for: '+ file_name)
         eel.js_render_file_details(output)
     except Exception as e:
-        print('Error:', e)
+        
         error_service.log_error('Error | '+ str(e) + ' | At: get_file_details')
     
 @eel.expose
@@ -84,22 +87,26 @@ def send_mail():
 def upload_file(local_path):
     try:
        ssh_connection.transfer_file_scp(local_path)
+       log('File uploaded')
     except Exception as e:
-        print('Error:', e)
+        
         error_service.log_error('Error | '+ str(e) + ' | At: upload_file')
+        
 @eel.expose
 def download_file(username):
-    print('download_file')
-    remote_path= ssh_connection.current_directory
+    
+    log('File downloaded')
     ssh_connection.download_file_scp(username)
 
 @eel.expose
 def get_modal(modal_type):
-    # print('modal_type:', modal_type)
-    modal_desc= modal.get_modal(modal_type)
-    # print('modal_desc:', modal_desc)
-    return modal_desc
-  
+    try:
+        modal_desc= modal.get_modal(modal_type)
+        log('Modal opened: '+ modal_type)
+        return modal_desc
+    except Exception as e:
+        error_service.log_error('Error | '+ str(e) + ' | At: get_modal')
+        
 @eel.expose
 def init_app():
    
@@ -111,12 +118,13 @@ def init_app():
        
         logged_user= ssh_connection.execute_command('whoami')
         output= ssh_connection.execute_command('ls -lh')
+        log('App initialized')
         eel.js_render_folder_details(output)
         return logged_user
        
               
     except Exception as e:
-        print('Error:', e)
+        
         error_service.log_error('Error | '+ str(e) + ' | at init_app')
       
     
