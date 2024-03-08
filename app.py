@@ -78,25 +78,20 @@ def get_back():
 def send_mail():
     print('send_mail')
     log('Mail Sent')
-    # send mail with shell command
     
     
 @eel.expose
-def upload_file():
-    
-    print('upload_file')
-    # upload file with scp command
-    # To upload a file using scp command, you can use the following command:
-    # scp /path/to/local/file username@hostname:/path/to/remote/directory
-    # Please replace the paths, username, and hostname with your actual data.
-
+def upload_file(local_path):
+    try:
+       ssh_connection.transfer_file_scp(local_path)
+    except Exception as e:
+        print('Error:', e)
+        error_service.log_error('Error | '+ str(e) + ' | At: upload_file')
 @eel.expose
-def download_file():
+def download_file(local_path):
     print('download_file')
-    # download file with scp command
-    # To download a file using scp command, you can use the following command:
-    # scp username@hostname:/path/to/remote/file /path/to/local/directory
-    # Please replace the paths, username, and hostname with your actual data.
+    remote_path= ssh_connection.current_directory
+    ssh_connection.download_file_scp(local_path)
 
 @eel.expose
 def get_modal(modal_type):

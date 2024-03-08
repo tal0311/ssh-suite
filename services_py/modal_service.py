@@ -45,13 +45,12 @@ class ModalService:
             "title": "FTP",
             "content": "Please enter your FTP details",
             "fields": [
-                {"label": "Hostname", "type": "text", "name": "hostname"},
-                {"label": "Port", "type": "number", "name": "port"},
-                {"label": "Username", "type": "text", "name": "username"},
-                {"label": "Password", "type": "password", "name": "password"}
+              
+               
+                {"label": "Past file full path location", "type": "text", "name": "path"}
             ],
             
-            "button": {"label": "Connect", "function": "connect"},
+            "button": {"label": "Send file", "function": "onUploadFile"},
              
             
         }

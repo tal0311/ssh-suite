@@ -47,10 +47,11 @@
           <pre>Files you select will show content here</pre>
         </code>
       </div>
+      <button onclick="onDownloadFile()">download</button>
     </section>
 
     <section class="upload-file container-base">
-      <button onclick="onUploadFile()" class="icon upload-icon"></button>
+      <button onclick="setModal('ftp')" class="icon upload-icon"></button>
     </section>
     <section class="history container-base">
       <h4>History</h4>
@@ -173,10 +174,20 @@
         eel.toggle_terminal()();
       }
 
-      function onUploadFile() {
+      function onUploadFile(ev) {
+        ev.preventDefault();
+        console.log("uploading file");
+        formData= Object.fromEntries(new FormData(ev.target)); 
         // open file upload modal from service
-        eel.upload_file()();
+        eel.upload_file(formData.path)();
+        
+        closeModal();
       }
+
+      // function onDownloadFile(file_path) {
+      //   // open file upload modal from service
+      //   eel.download_file(file_path)();
+      // }
 
       async function setModal(modal) {
         
