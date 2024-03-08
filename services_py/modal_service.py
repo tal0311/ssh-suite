@@ -1,13 +1,15 @@
 class ModalService:
        
     def get_modal(self, modal_type):
-        
+        print('modal_type service:', modal_type)
         if modal_type == "login":
             return self.login_modal()
         if modal_type == "connect":
             return self.connect_modal()
         if modal_type == "ftp":
             return self.ftp_modal()
+        if modal_type== 'ftp_get':
+            return self.ftp_get()
 
    
     
@@ -42,7 +44,7 @@ class ModalService:
     
     def ftp_modal(self):
         return {
-            "title": "FTP",
+            "title": "Upload File FTP",
             "content": "Please enter your FTP details",
             "fields": [
               
@@ -63,8 +65,20 @@ class ModalService:
                 {"label": "Username", "type": "text", "name": "username"},
                 {"label": "Password", "type": "password", "name": "password"}
             ],
-            "buttons": [
-                {"label": "Signin", "function": "signin"},
+            "button": {"label": "Signin", "function": "signin"},
              
-            ]
+            
+        }
+        
+    def ftp_get(self):
+        return {
+            "title": "Get File FTP",
+            "content": "Please enter your FTP details",
+            "fields": [
+                {"label": "Local user name", "type": "text", "name": "username"},
+                
+            ],
+            "button" : {"label": "Download", "function": "onDownloadFile"},
+                
+            
         }

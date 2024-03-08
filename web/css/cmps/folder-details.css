@@ -7,3 +7,12 @@
 .file-content{
     overflow: auto;
 }
+
+.ftp-get-btn{
+    width: min-content;
+    padding: 7px;
+    background: var(--clr1);
+    border: none;
+    color: var(--clr2);
+    border-radius: 4px;
+}

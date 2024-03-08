@@ -88,14 +88,16 @@ def upload_file(local_path):
         print('Error:', e)
         error_service.log_error('Error | '+ str(e) + ' | At: upload_file')
 @eel.expose
-def download_file(local_path):
+def download_file(username):
     print('download_file')
     remote_path= ssh_connection.current_directory
-    ssh_connection.download_file_scp(local_path)
+    ssh_connection.download_file_scp(username)
 
 @eel.expose
 def get_modal(modal_type):
+    # print('modal_type:', modal_type)
     modal_desc= modal.get_modal(modal_type)
+    # print('modal_desc:', modal_desc)
     return modal_desc
   
 @eel.expose
@@ -108,7 +110,6 @@ def init_app():
         ssh_connection.connect()
        
         logged_user= ssh_connection.execute_command('whoami')
-        print('Initial commands\n', logged_user)
         output= ssh_connection.execute_command('ls -lh')
         eel.js_render_folder_details(output)
         return logged_user

@@ -47,7 +47,7 @@
           <pre>Files you select will show content here</pre>
         </code>
       </div>
-      <button onclick="onDownloadFile()">download</button>
+      <button class="ftp-get-btn" disabled="true" onclick="setModal('ftp_get')">Download</button>
     </section>
 
     <section class="upload-file container-base">
@@ -164,10 +164,12 @@
         
         html = `<code><pre>${fileDetails}</pre></code>`
         js_inner_html(".file-content", html);
+        document.querySelector(".ftp-get-btn").disabled = false
       }
 
       function onBack() {
         eel.get_back()();
+       
       }
 
       function onToggleTerminal() {
@@ -184,13 +186,17 @@
         closeModal();
       }
 
-      // function onDownloadFile(file_path) {
-      //   // open file upload modal from service
-      //   eel.download_file(file_path)();
-      // }
+      function onDownloadFile(ev) {
+        ev.preventDefault();
+        console.log("uploading file");
+        formData= Object.fromEntries(new FormData(ev.target)); 
+        // open file upload modal from service
+        eel.download_file(formData.username)();
+        closeModal();
+      }
 
       async function setModal(modal) {
-        
+        console.log("setting modal", modal);
         modalDesc=await eel.get_modal(modal)();
         console.log(modalDesc);
         strHtml =`

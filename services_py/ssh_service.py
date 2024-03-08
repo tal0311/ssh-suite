@@ -41,6 +41,7 @@ class SSHConnection:
                     full_command = f'cat {self.current_directory}/{target}'
                     print('full_command:', full_command) 
                     stdin, stdout, stderr = self.client.exec_command(full_command)
+                    self.current_file = target
                     return stdout.read().decode('utf-8').strip()
 
                 return stdout.read().decode('utf-8').split('\n')[:-1]
@@ -71,10 +72,15 @@ class SSHConnection:
                 print(f"Error occurred: {e}")
 
 
-    def download_file_scp(self, local_path):
+    def download_file_scp(self,username='User'):
         if self.client:
-            
-            remote_path= self.current_directory+'/'+local_path
-            with SCPClient(self.client.get_transport()) as scp:
-                scp.get(remote_path)
+            try:
+                remote_path= f'{self.current_directory}/{self.current_file}'
+                local_path = f'C:\\Users\\{username}\\Desktop'
 
+                with SCPClient(self.client.get_transport()) as scp:
+                    scp.get(remote_path, local_path)
+                    print("File downloaded successfully!")
+            except (paramiko.ssh_exception.SSHException, FileNotFoundError) as e:
+                print(f"Error occurred: {e}")
+                
