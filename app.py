@@ -62,7 +62,7 @@ def get_folder_details(folder_name):
 @eel.expose
 def get_file_details(file_name):
     try:
-        global ssh_connection
+        # global ssh_connection
         output= ssh_connection.execute_command('cat' ,file_name)
         log('File details for: '+ file_name)
         eel.js_render_file_details(output)
@@ -108,6 +108,18 @@ def get_modal(modal_type):
         error_service.log_error('Error | '+ str(e) + ' | At: get_modal')
         
 @eel.expose
+def set_conn(conn_info):
+    print(conn_info)
+    try:    
+        info= {"hostname": conn_info['hostname'], "port": conn_info['port'], "username": conn_info['username'], "password": conn_info['password']}
+        app_state.update_state('ssh_connection', info)
+        app_state.get_state('ssh_connection')
+        log('Connection set: ' + str(conn_info))
+        # init_app()
+    except Exception as e:
+        error_service.log_error('Error | '+ str(e) + ' | At: set_conn')
+    
+@eel.expose
 def init_app():
    
     global ssh_connection
@@ -124,8 +136,8 @@ def init_app():
        
               
     except Exception as e:
-        
         error_service.log_error('Error | '+ str(e) + ' | at init_app')
+        return 'Error'
       
     
 @eel.expose

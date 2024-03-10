@@ -47,7 +47,9 @@
           <pre>Files you select will show content here</pre>
         </code>
       </div>
-      <button class="ftp-get-btn" disabled="true" onclick="setModal('ftp_get')">Download</button>
+      <button class="ftp-get-btn" disabled="true" onclick="setModal('ftp_get')">
+        Download
+      </button>
     </section>
 
     <section class="upload-file container-base">
@@ -56,12 +58,12 @@
     <section class="history container-base">
       <h4>History</h4>
       <ul class="history-list inner-container">
-       <li>item 1</li>
-       <li>item 2</li>
-       <li>item 3</li>
-       <li>item 4</li>
-       <li>item 5</li>
-       <li>item 6</li>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+        <li>item 6</li>
       </ul>
     </section>
     <section class="terminal">
@@ -71,38 +73,23 @@
       <button onclick="onSendMail()" class="icon mail-icon"></button>
     </section>
 
-    <dialog>
-      
-      
-    </dialog>
+    <dialog></dialog>
 
     <script type="text/javascript" src="/eel.js"></script>
 
     <script>
-     
-    
       system = [
         "Linux ubuntoserver 5.15.0-94-generic #104-Ubuntu SMP Tue Jan 9 15:25:40 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux",
       ];
       // user = ["tal0311"];
 
       async function init() {
-        logged_user= await eel.init_app()();
-        console.log(logged_user);
-        // renderFileList(files);
-        if (logged_user[0]) {
-          document.querySelector(".connection-indicator").classList.add("online");
-        }
-        js_inner_html(".user-preview h4", logged_user[0]);
-        renderIcon('.terminal-icon', 'terminal');
-        renderIcon('.upload-icon', 'upload');
-        renderIcon('.mail-icon', 'mail');
+        setModal("connect");
       }
 
-       async function renderIcon(selector, icon_name) {
-        icon =await eel.get_icon(icon_name)();
+      async function renderIcon(selector, icon_name) {
+        icon = await eel.get_icon(icon_name)();
         js_inner_html(selector, icon);
-        
       }
 
       function renderFileList(files) {
@@ -149,27 +136,29 @@
       }
 
       eel.expose(js_render_folder_details);
-      function js_render_folder_details(folderDetails ,curr_dir='/home/tal0311/') {
-        document.querySelector(".back-btn").disabled = curr_dir === '/home/tal0311/'? true : false;
-         renderFileList(folderDetails);
+      function js_render_folder_details(
+        folderDetails,
+        curr_dir = "/home/tal0311/"
+      ) {
+        document.querySelector(".back-btn").disabled =
+          curr_dir === "/home/tal0311/" ? true : false;
+        renderFileList(folderDetails);
         // renderBreadcrumbs(dir)
       }
 
       function renderBreadcrumbs() {
-        eel.get_breadcrumbs(dir)
+        eel.get_breadcrumbs(dir);
         js_inner_html(".breadcrumbs", "Home");
       }
       eel.expose(js_render_file_details);
       function js_render_file_details(fileDetails) {
-        
-        html = `<code><pre>${fileDetails}</pre></code>`
+        html = `<code><pre>${fileDetails}</pre></code>`;
         js_inner_html(".file-content", html);
-        document.querySelector(".ftp-get-btn").disabled = false
+        document.querySelector(".ftp-get-btn").disabled = false;
       }
 
       function onBack() {
         eel.get_back()();
-       
       }
 
       function onToggleTerminal() {
@@ -179,17 +168,17 @@
       function onUploadFile(ev) {
         ev.preventDefault();
         console.log("uploading file");
-        formData= Object.fromEntries(new FormData(ev.target)); 
+        formData = Object.fromEntries(new FormData(ev.target));
         // open file upload modal from service
         eel.upload_file(formData.path)();
-        
+
         closeModal();
       }
 
       function onDownloadFile(ev) {
         ev.preventDefault();
         console.log("uploading file");
-        formData= Object.fromEntries(new FormData(ev.target)); 
+        formData = Object.fromEntries(new FormData(ev.target));
         // open file upload modal from service
         eel.download_file(formData.username)();
         closeModal();
@@ -197,45 +186,67 @@
 
       async function setModal(modal) {
         console.log("setting modal", modal);
-        modalDesc=await eel.get_modal(modal)();
+        modalDesc = await eel.get_modal(modal)();
         console.log(modalDesc);
-        strHtml =`
+        strHtml = `
         <button onclick="closeModal()">X</button>
         <h1>${modalDesc.title}</h1>
          <form action="dialog" onsubmit="${modalDesc.button.function}(event);">
-            ${modalDesc.fields.map((field) => {
-              return `
+            ${modalDesc.fields
+              .map((field) => {
+                return `
               <label for="${field.name}">${field.label}</label>
               <input type="${field.type}" name="${field.name}" id="${field.name}" placeholder="${field.label}" />`;
-            }).join("")}
+              })
+              .join("")}
             
             <button>${modalDesc.button.label}</button>
             
          </form>
-        `
+        `;
         js_inner_html("dialog", strHtml);
         openModal();
       }
 
-      
       function onSendMail() {
         // open mail modal from service
-       eel.send_mail()();
+        eel.send_mail()();
       }
 
-      function connect(ev){
+      async function connect(ev) {
         ev.preventDefault();
         console.log("connecting");
+
+        console.log((formData = Object.fromEntries(new FormData(ev.target))));
+        formData.port = parseInt(formData.port);
+        console.log(formData);
+        default_conn = {
+          hostname: "10.0.0.14",
+          port: 22,
+          username: "tal0311",
+          password: "123456",
+        };
+        await eel.set_conn(default_conn)();
+
+        logged_user = await eel.init_app()();
+
+        if (logged_user[0]) {
+          document
+            .querySelector(".connection-indicator")
+            .classList.add("online");
+        }
+        js_inner_html(".user-preview h4", logged_user[0]);
+        renderIcon(".terminal-icon", "terminal");
+        renderIcon(".upload-icon", "upload");
+        renderIcon(".mail-icon", "mail");
         closeModal();
-        
       }
 
-      function signin(ev){
+      function signin(ev) {
         ev.preventDefault();
         console.log("signing in");
         closeModal();
       }
-
     </script>
   </body>
 </html>

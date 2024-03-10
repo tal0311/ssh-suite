@@ -14,3 +14,29 @@ User Actions Log
 2024-03-08 14:43:22 - User tal0311: File details for: bs_1.sh
 2024-03-08 14:43:30 - User tal0311: Folder details for: ex1
 2024-03-08 14:45:25 - User tal0311: File details for: bs_1.sh
+2024-03-09 19:18:52 - User tal0311: App initialized
+2024-03-09 19:18:55 - User tal0311: File details for: bs_1.sh
+2024-03-09 19:19:06 - User tal0311: File details for: dead.letter
+2024-03-09 19:19:44 - User tal0311: Folder details for: ex1
+2024-03-09 19:19:46 - User tal0311: File details for: dogFood.lst
+2024-03-09 19:20:11 - User tal0311: File details for: welcome.sh
+2024-03-10 21:08:50 - User tal0311: Modal opened: connect
+2024-03-10 21:12:35 - User tal0311: Modal opened: connect
+2024-03-10 21:19:03 - User tal0311: Modal opened: connect
+2024-03-10 21:20:03 - User tal0311: Connection set
+2024-03-10 21:21:09 - User tal0311: Modal opened: connect
+2024-03-10 21:21:17 - User tal0311: Connection set
+2024-03-10 21:23:16 - User tal0311: Modal opened: connect
+2024-03-10 21:23:24 - User tal0311: Connection set
+2024-03-10 21:25:08 - User tal0311: Modal opened: connect
+2024-03-10 21:25:55 - User tal0311: Connection set
+2024-03-10 21:28:13 - User tal0311: Modal opened: connect
+2024-03-10 21:29:44 - User tal0311: Modal opened: connect
+2024-03-10 21:29:59 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-10 21:30:01 - User tal0311: App initialized
+2024-03-10 21:33:26 - User tal0311: Modal opened: connect
+2024-03-10 21:33:37 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-10 21:33:38 - User tal0311: App initialized
+2024-03-10 21:35:19 - User tal0311: Modal opened: connect
+2024-03-10 21:35:20 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-10 21:35:22 - User tal0311: App initialized

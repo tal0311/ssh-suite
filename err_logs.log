@@ -3,3 +3,8 @@ Error | module 'services_py.notification_service' has no attribute 'log_action' 
 Error | AppState.get_state() missing 1 required positional argument: 'key' | At: toggle_terminal
 Error | AppState.get_state() missing 1 required positional argument: 'key' | At: toggle_terminal
 Error | name 'user' is not defined | At: toggle_terminal
+Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
+Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
+Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
+Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
+Error | log() takes 1 positional argument but 2 were given | At: set_conn

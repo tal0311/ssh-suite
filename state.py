@@ -8,7 +8,7 @@ class AppState:
             "whoami": "tal0311",
             "logged_user": {"username": "tal", "password": "123456"},
             "ssh_connection": {
-                "hostname": "192.168.1.160",
+                "hostname": "",
                 "port": 22,
                 "username": "tal0311",
                 "password": "123456"
