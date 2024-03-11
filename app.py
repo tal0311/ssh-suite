@@ -54,11 +54,13 @@ def get_icon(icon_name):
 def get_folder_details(folder_name):
     try:
         global ssh_connection
-        ssh_connection.execute_command('cd' ,folder_name)
+        dir= ssh_connection.execute_command('cd' ,folder_name)
         output= ssh_connection.execute_command('ls -lh' ,folder_name)
-        curr_dir= ssh_connection.current_directory
+      
+        
         log('Folder details for: '+ folder_name)
-        eel.js_render_folder_details(output, curr_dir)
+        eel.js_render_folder_details(output, )
+        eel.js_render_breadcrumbs(dir)
     except Exception as e:
         
         err_service.log_error('Error | '+ str(e) + ' | At: get_folder_details') 

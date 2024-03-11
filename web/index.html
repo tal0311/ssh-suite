@@ -133,18 +133,13 @@
       eel.expose(js_render_folder_details);
       function js_render_folder_details(
         folderDetails,
-        curr_dir = "/home/tal0311/"
+      
       ) {
-        document.querySelector(".back-btn").disabled =
-          curr_dir === "/home/tal0311/" ? true : false;
+       
         renderFileList(folderDetails);
         // renderBreadcrumbs(dir)
       }
 
-      function renderBreadcrumbs() {
-        eel.get_breadcrumbs(dir);
-        js_inner_html(".breadcrumbs", "Home");
-      }
       eel.expose(js_render_file_details);
       function js_render_file_details(fileDetails) {
         html = `<code><pre>${fileDetails}</pre></code>`;
@@ -259,9 +254,16 @@
         html = logs.map((log) => {
           return `<li>${log}</li>`;
         }).join("");
-        
+
         js_inner_html(".history-list", html);
 
+      }
+
+      eel.expose(js_render_breadcrumbs);
+      function js_render_breadcrumbs(breadcrumbs) {
+        js_inner_html(".breadcrumbs", breadcrumbs);
+        document.querySelector(".back-btn").disabled =
+          breadcrumbs === "/home/tal0311/" ? true : false;
       }
 
     </script>
