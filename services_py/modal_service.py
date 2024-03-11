@@ -10,6 +10,8 @@ class ModalService:
             return self.ftp_modal()
         if modal_type== 'ftp_get':
             return self.ftp_get()
+        if modal_type== 'sign_in':
+            return self.signIn_modal()
 
    
     

@@ -18,8 +18,8 @@ ssh_connection = None
 eel.init('web')
 app_state = state.AppState()
 modal= modal_service.ModalService()
-user_http = HTTPService('/api/user')
-error_service= error_service.ErrorService()
+auth_http = HTTPService('/api/auth')
+err_service= error_service.ErrorService()
 note_service= notification_service.NotificationManager()
 size = app_state.get_state('size')
 
@@ -37,7 +37,7 @@ def toggle_terminal():
       
     except Exception as e:
         
-        error_service.log_error('Error | '+ str(e) + ' | At: toggle_terminal')
+        err_service.log_error('Error | '+ str(e) + ' | At: toggle_terminal')
 @eel.expose
 def initial_commands():
     pass
@@ -57,7 +57,7 @@ def get_folder_details(folder_name):
         eel.js_render_folder_details(output, curr_dir)
     except Exception as e:
         
-        error_service.log_error('Error | '+ str(e) + ' | At: get_folder_details') 
+        err_service.log_error('Error | '+ str(e) + ' | At: get_folder_details') 
         
 @eel.expose
 def get_file_details(file_name):
@@ -68,7 +68,7 @@ def get_file_details(file_name):
         eel.js_render_file_details(output)
     except Exception as e:
         
-        error_service.log_error('Error | '+ str(e) + ' | At: get_file_details')
+        err_service.log_error('Error | '+ str(e) + ' | At: get_file_details')
     
 @eel.expose
 def get_back():
@@ -90,7 +90,7 @@ def upload_file(local_path):
        log('File uploaded')
     except Exception as e:
         
-        error_service.log_error('Error | '+ str(e) + ' | At: upload_file')
+        err_service.log_error('Error | '+ str(e) + ' | At: upload_file')
         
 @eel.expose
 def download_file(username):
@@ -105,7 +105,7 @@ def get_modal(modal_type):
         log('Modal opened: '+ modal_type)
         return modal_desc
     except Exception as e:
-        error_service.log_error('Error | '+ str(e) + ' | At: get_modal')
+        err_service.log_error('Error | '+ str(e) + ' | At: get_modal')
         
 @eel.expose
 def set_conn(conn_info):
@@ -115,9 +115,22 @@ def set_conn(conn_info):
         app_state.update_state('ssh_connection', info)
         app_state.get_state('ssh_connection')
         log('Connection set: ' + str(conn_info))
-        # init_app()
+        
     except Exception as e:
-        error_service.log_error('Error | '+ str(e) + ' | At: set_conn')
+        err_service.log_error('Error | '+ str(e) + ' | At: set_conn')
+    
+@eel.expose
+def signin(credentials):
+    try:
+        print('signing in')
+        auth_http.post('signin',credentials)
+        app_state.update_state('whoami', user)
+        log('User signed in: '+ credentials)
+        return user
+    except Exception as e:
+        err_service.log_error('Error | '+ str(e) + ' | At: signin')
+        return 'Error'
+    
     
 @eel.expose
 def init_app():
@@ -136,7 +149,7 @@ def init_app():
        
               
     except Exception as e:
-        error_service.log_error('Error | '+ str(e) + ' | at init_app')
+        err_service.log_error('Error | '+ str(e) + ' | at init_app')
         return 'Error'
       
     

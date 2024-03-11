@@ -40,3 +40,11 @@ User Actions Log
 2024-03-10 21:35:19 - User tal0311: Modal opened: connect
 2024-03-10 21:35:20 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
 2024-03-10 21:35:22 - User tal0311: App initialized
+2024-03-10 21:42:37 - User tal0311: Modal opened: connect
+2024-03-10 21:42:41 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-10 21:42:42 - User tal0311: App initialized
+2024-03-10 21:42:45 - User tal0311: Modal opened: signIn_modal
+2024-03-10 21:44:27 - User tal0311: Modal opened: connect
+2024-03-10 21:44:29 - User tal0311: Connection set: {'hostname': '10.0.0.14', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-10 21:44:30 - User tal0311: App initialized
+2024-03-10 21:44:33 - User tal0311: Modal opened: sign_in

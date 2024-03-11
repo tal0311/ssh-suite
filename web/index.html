@@ -21,7 +21,7 @@
       <div class="search-container inner-container">
         <input type="search" name="" id="" placeholder="Search anything" />
       </div>
-      <article onclick="setModal('connect')" class="user-preview">
+      <article onclick="setModal('sign_in')" class="user-preview">
         <h4></h4>
         <span class="connection-indicator"></span>
       </article>
@@ -244,7 +244,9 @@
 
       function signin(ev) {
         ev.preventDefault();
+        formData = Object.fromEntries(new FormData(ev.target));
         console.log("signing in");
+        eel.signin(formData)();
         closeModal();
       }
     </script>
