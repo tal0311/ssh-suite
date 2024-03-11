@@ -103,3 +103,40 @@ User Actions Log
 2024-03-11 15:55:09 - User tal0311: Connection set: {'hostname': '192.168.1.160', 'port': 22, 'username': 'tal0311', 'password': '123456'}
 2024-03-11 15:55:10 - User tal0311: App initialized
 2024-03-11 15:55:12 - User tal0311: Folder details for: ex1
+2024-03-11 15:59:23 - User tal0311: Modal opened: connect
+2024-03-11 16:00:25 - User tal0311: Connection set: {'hostname': '192.168.1.160', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-11 16:00:26 - User tal0311: App initialized
+2024-03-11 16:00:33 - User tal0311: Folder details for: ex1
+2024-03-11 16:00:34 - User tal0311: File details for: dogFood.lst
+2024-03-11 16:00:41 - User tal0311: Terminal Opened
+2024-03-11 20:36:36 - User tal0311: Modal opened: connect
+2024-03-11 20:36:39 - User tal0311: Connection set: {'hostname': '192.168.1.160', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-11 20:36:39 - User tal0311: App initialized
+2024-03-11 20:36:52 - User tal0311: File details for: win_file.txt
+2024-03-11 20:36:56 - User tal0311: Modal opened: ftp_get
+2024-03-11 20:37:07 - User tal0311: File downloaded
+2024-03-11 20:37:11 - User tal0311: Modal opened: ftp
+2024-03-11 20:37:19 - User tal0311: Terminal Opened
+2024-03-11 20:37:48 - User tal0311: Modal opened: connect
+2024-03-11 20:38:45 - User tal0311: Modal opened: connect
+2024-03-11 20:39:09 - User tal0311: Connection set: {'hostname': '192.168.1.160', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-11 20:39:09 - User tal0311: App initialized
+2024-03-11 20:39:21 - User tal0311: File details for: bs_1.sh
+2024-03-11 20:39:25 - User tal0311: Modal opened: ftp_get
+2024-03-11 20:39:29 - User tal0311: File downloaded
+2024-03-11 20:39:34 - User tal0311: Modal opened: ftp
+2024-03-11 20:39:43 - User tal0311: Terminal Opened
+2024-03-11 20:39:50 - User tal0311: Folder details for: ex1
+2024-03-11 20:41:49 - User tal0311: Modal opened: connect
+2024-03-11 20:42:24 - User tal0311: Modal opened: connect
+2024-03-11 20:43:19 - User tal0311: Modal opened: connect
+2024-03-11 20:43:44 - User tal0311: Connection set: {'hostname': '192.168.1.160', 'port': 22, 'username': 'tal0311', 'password': '123456'}
+2024-03-11 20:43:45 - User tal0311: App initialized
+2024-03-11 20:43:54 - User tal0311: File details for: bs_1.sh
+2024-03-11 20:43:56 - User tal0311: Folder details for: ex1
+2024-03-11 20:44:17 - User tal0311: File details for: bs_1.sh
+2024-03-11 20:44:22 - User tal0311: Modal opened: ftp_get
+2024-03-11 20:44:28 - User tal0311: File downloaded
+2024-03-11 20:44:37 - User tal0311: Modal opened: ftp
+2024-03-11 20:44:45 - User tal0311: File uploaded
+2024-03-11 20:44:59 - User tal0311: Terminal Opened
