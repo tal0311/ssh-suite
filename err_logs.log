@@ -8,3 +8,7 @@ Error | [WinError 10060] A connection attempt failed because the connected party
 Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
 Error | [WinError 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond | at init_app
 Error | log() takes 1 positional argument but 2 were given | At: set_conn
+Error | [WinError 10049] The requested address is not valid in its context | at init_app
+Error | [WinError 10049] The requested address is not valid in its context | at init_app
+Error | 'NoneType' object is not subscriptable | At: get_modal
+Error | 'NoneType' object has no attribute 'split' | At: get_modal

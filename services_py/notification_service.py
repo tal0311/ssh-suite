@@ -21,7 +21,8 @@ class NotificationManager:
         try:
             with open(self.file_path, 'r') as file:
                 print("User actions log:")
-                print(file.read())
+                # print(file.read())
+                return file.read()
         except FileNotFoundError:
             print("Log file not found.")
 

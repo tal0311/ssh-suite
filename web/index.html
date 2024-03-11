@@ -58,12 +58,7 @@
     <section class="history container-base">
       <h4>History</h4>
       <ul class="history-list inner-container">
-        <li>item 1</li>
-        <li>item 2</li>
-        <li>item 3</li>
-        <li>item 4</li>
-        <li>item 5</li>
-        <li>item 6</li>
+        <li>History will be displayed here as you progress</li>
       </ul>
     </section>
     <section class="terminal">
@@ -220,13 +215,19 @@
         console.log((formData = Object.fromEntries(new FormData(ev.target))));
         formData.port = parseInt(formData.port);
         console.log(formData);
-        default_conn = {
-          hostname: "10.0.0.14",
-          port: 22,
-          username: "tal0311",
-          password: "123456",
-        };
-        await eel.set_conn(default_conn)();
+        if(!formData.hostname ||
+           !formData.username || 
+          !formData.password){
+        
+          
+          formData = {
+            hostname: "192.168.1.160",
+            port: 22,
+            username: "tal0311",
+            password: "123456",
+          };
+        }
+        await eel.set_conn(formData)();
 
         logged_user = await eel.init_app()();
 
@@ -249,6 +250,20 @@
         eel.signin(formData)();
         closeModal();
       }
+
+      eel.expose(js_render_logs);
+      function js_render_logs(logs) {
+        console.log(logs);
+
+
+        html = logs.map((log) => {
+          return `<li>${log}</li>`;
+        }).join("");
+        
+        js_inner_html(".history-list", html);
+
+      }
+
     </script>
   </body>
 </html>

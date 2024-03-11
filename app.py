@@ -26,6 +26,10 @@ size = app_state.get_state('size')
 def log(message):
     user= app_state.get_state('whoami')
     note_service.log_action(user, message)
+    logs= note_service.display_logs()
+    logs= logs.split('\n')
+    logs_for_display= logs[len(logs)-10:-1]
+    eel.js_render_logs(logs_for_display)
 
 @eel.expose
 def toggle_terminal():
@@ -123,10 +127,10 @@ def set_conn(conn_info):
 def signin(credentials):
     try:
         print('signing in')
-        auth_http.post('signin',credentials)
-        app_state.update_state('whoami', user)
+        # auth_http.post('signin',credentials)
+        # app_state.update_state('whoami', user)
         log('User signed in: '+ credentials)
-        return user
+        # return user
     except Exception as e:
         err_service.log_error('Error | '+ str(e) + ' | At: signin')
         return 'Error'
@@ -161,3 +165,5 @@ try:
     eel.start('index.html', size=(size['width'], size['height']), port=0)
 except (SystemExit, MemoryError, KeyboardInterrupt):
     print("Program Exit, Save Logs if Needed")
+
+

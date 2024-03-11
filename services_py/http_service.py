@@ -33,6 +33,6 @@ class HTTPService:
     
 
 
-auth_http = HTTPService('/api/auth')
-res= auth_http.post('signin', {'username': 'admin', 'password': 'admin'})
-print(res)
+# auth_http = HTTPService('/api/auth')
+# res= auth_http.post('signin', {'username': 'admin', 'password': 'admin'})
+# print(res)

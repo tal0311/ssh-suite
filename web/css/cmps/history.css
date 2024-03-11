@@ -1,35 +1,42 @@
-.history{
-    display: grid;
-    grid-template-rows: min-content 1fr;
-
+.history {
+  display: grid;
+  grid-template-rows: min-content 1fr;
 }
-.history-list{
-    margin: 0;
-   overflow: auto;
-    list-style: none;
-    margin-block-start: 1rem;
-    max-height: 200px;
+.history-list {
+  /* display: grid;
+  grid-gap: 0.2rem; */
+  height: 100px;
+  margin: 0;
+  overflow: auto;
+
+  margin-block-start: 1rem;
+  max-height: 200px;
 }
 
+.history-list li{
+  padding: 4px;
+  margin: 0.5rem 0;
+}
+.history-list li:nth-child(even) {
+  background-color: var(--clr3);
+}
 
+.history-list::-webkit-scrollbar {
+  width: var(--sb-size);
+}
 
-  
-  .history-list::-webkit-scrollbar {
-    width: var(--sb-size);
+.history-list::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .history-list {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
-  
-  .history-list::-webkit-scrollbar-track {
-    background: var(--sb-track-color);
-    border-radius: 3px;
-  }
-  
-  .history-list::-webkit-scrollbar-thumb {
-    background: var(--sb-thumb-color);
-    border-radius: 3px;
-  }
-  
-  @supports not selector(::-webkit-scrollbar) {
-    .history-list {
-      scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-    }
-  }
+}
